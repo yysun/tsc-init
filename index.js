@@ -31,7 +31,6 @@ if (!fs.existsSync(package_json)) {
 }
 
 console.log('Installing packages. This might take a couple minutes.');
-const package_info = require(package_json);
 execSync('npm install webpack ts-loader typescript --save-dev');
 
 if (!fs.existsSync(tsconfig_json)) {
@@ -57,4 +56,16 @@ fs.writeFileSync(
   webpack_config
 );
 
-// console.log('Adding npm scripts');
+console.log('Adding npm scripts');
+const package_info = require(package_json);
+if (!package_info.scripts || ! package_info.scripts['build:dev']) {
+  package_info["scripts"]["build:dev"] = 'webpack -w -d';
+}
+if (!package_info.scripts || ! package_info.scripts['build:prod']) {
+  package_info["scripts"]["build:prod"] = 'webpack -p';
+}
+
+fs.writeFileSync(
+  package_json,
+  JSON.stringify(package_info, null, 2)
+);
