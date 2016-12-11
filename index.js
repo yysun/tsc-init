@@ -50,11 +50,13 @@ fs.writeFileSync(
 );
 
 RegExp.prototype.toJSON = RegExp.prototype.toString;
-console.log('Updating webpack.config.js');
-fs.writeFileSync(
-  webpack_config_js,
-  webpack_config
-);
+if (!fs.existsSync(webpack_config_js)) {
+  console.log('Creating webpack.config.js');
+  fs.writeFileSync(
+    webpack_config_js,
+    webpack_config
+  );
+}
 
 console.log('Adding npm scripts');
 const package_info = require(package_json);
