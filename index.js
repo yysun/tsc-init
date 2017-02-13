@@ -16,10 +16,10 @@ const webpack_config = `module.exports = {
     filename: './app.[hash].js'
   },
   resolve: {
-    extensions: ['', '.webpack.js', '.web.js', '.ts', '.tsx', '.js']
+    extensions: ['.ts', '.tsx', '.js']
   },
   module: {
-    loaders: [
+    rules: [
       { test: /\.tsx?$/, loader: 'ts-loader' }
     ]
   }
@@ -31,11 +31,11 @@ if (!fs.existsSync(package_json)) {
 }
 
 console.log('Installing packages. This might take a couple minutes.');
-execSync('npm install webpack ts-loader typescript --save-dev');
+execSync('npm install webpack webpack-dev-server ts-loader typescript --save-dev');
 
 if (!fs.existsSync(tsconfig_json)) {
   console.log('Creating tsconfig.json');
-  execSync('tsc --init'); 
+  execSync('tsc --init');
 }
 
 const tsconfig = require(tsconfig_json);
