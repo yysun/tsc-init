@@ -7,7 +7,7 @@ const path = require('path');
 const package_json = path.resolve('./package.json');
 const tsconfig_json = path.resolve('./tsconfig.json');
 const webpack_config_js = path.resolve('./webpack.config.js');
-const karma_config_js = path.resolve('./karma.config.js');
+const karma_config_js = path.resolve('./karma.conf.js');
 const git_ignore_file = path.resolve('./.gitignore');
 const execSync = require('child_process').execSync;
 
@@ -93,7 +93,7 @@ if (!fs.existsSync(webpack_config_js)) {
 }
 
 if (!fs.existsSync(karma_config_js)) {
-  console.log('Creating karma.config.js');
+  console.log('Creating karma.conf.js');
   fs.writeFileSync(
     karma_config_js,
     karma_config
@@ -117,7 +117,7 @@ if (!package_info.scripts || ! package_info.scripts['dev']) {
   package_info["scripts"]["dev"] = 'webpack-dev-server --inline --hot';
 }
 if (!package_info.scripts || ! package_info.scripts['build:prod']) {
-  package_info["scripts"]["build:prod"] = 'webpack -p';
+  package_info["scripts"]["build"] = 'webpack -p';
 }
 if (package_info.scripts) {
   package_info["scripts"]["test"] = 'karma start';
