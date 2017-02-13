@@ -60,8 +60,8 @@ if (!fs.existsSync(webpack_config_js)) {
 
 console.log('Adding npm scripts');
 const package_info = require(package_json);
-if (!package_info.scripts || ! package_info.scripts['build:dev']) {
-  package_info["scripts"]["build:dev"] = 'webpack -w -d';
+if (!package_info.scripts || ! package_info.scripts['dev']) {
+  package_info["scripts"]["dev"] = 'webpack-dev-server --inline --hot';
 }
 if (!package_info.scripts || ! package_info.scripts['build:prod']) {
   package_info["scripts"]["build:prod"] = 'webpack -p';
