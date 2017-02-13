@@ -65,7 +65,7 @@ if (!fs.existsSync(package_json)) {
 
 console.log('Installing packages. This might take a couple minutes.');
 execSync('npm install webpack webpack-dev-server ts-loader typescript --save-dev');
-execSync('npm install @types/jasmine karma karma-jasmine karma-webpack karma-chrome-launcher --save-dev');
+execSync('npm install @types/jasmine jasmine-core karma karma-jasmine karma-webpack karma-chrome-launcher --save-dev');
 
 if (!fs.existsSync(tsconfig_json)) {
   console.log('Creating tsconfig.json');
