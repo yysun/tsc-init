@@ -24,7 +24,7 @@ npm install tsc-init -g
 
 ## Usage
 
-Run following command
+Run following command inside your project folder
 ```
 tsc-init
 ```
