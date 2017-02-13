@@ -8,6 +8,7 @@ const package_json = path.resolve('./package.json');
 const tsconfig_json = path.resolve('./tsconfig.json');
 const webpack_config_js = path.resolve('./webpack.config.js');
 const karma_config_js = path.resolve('./karma.config.js');
+const git_ignore_file = path.resolve('./.gitignore');
 const execSync = require('child_process').execSync;
 
 // webpack 2.x
@@ -51,6 +52,12 @@ module.exports = function(config) {
   })
 }`;
 
+const git_ignore = `
+.DS_Store
+node_modules
+*.log
+`;
+
 if (!fs.existsSync(package_json)) {
   console.log('Initializing package.json');
   execSync('npm init -y');
@@ -90,6 +97,17 @@ if (!fs.existsSync(karma_config_js)) {
   fs.writeFileSync(
     karma_config_js,
     karma_config
+  );
+}
+
+console.log('Initializing git');
+execSync('git init');
+
+if (!fs.existsSync(git_ignore_file)) {
+  console.log('Creating .gitignore');
+  fs.writeFileSync(
+    git_ignore_file,
+    git_ignore
   );
 }
 
