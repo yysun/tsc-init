@@ -1,6 +1,6 @@
 {
   "name": "tsc-init",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "A command to initialize TypeScript and Webpack",
   "main": "index.js",
   "bin": "index.js",
