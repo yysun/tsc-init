@@ -15,7 +15,7 @@ const execSync = require('child_process').execSync;
 const webpack_config = `module.exports = {
   entry: './index.ts',
   output: {
-    filename: './app.[hash].js'
+    filename: './[name].js'
   },
   resolve: {
     extensions: ['.ts', '.tsx', '.js']
@@ -34,7 +34,7 @@ module.exports = function(config) {
     basePath: '',
     frameworks: ["jasmine"],
     files: [
-      { pattern: "tests/*.spec.ts" }
+      { pattern: "tests/*.spec.*" }
     ],
     exclude: [
     ],
