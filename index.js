@@ -72,7 +72,10 @@ if (!fs.existsSync(tsconfig_json)) {
   execSync('tsc --init');
 }
 
-const tsconfig = require(tsconfig_json);
+let tsconfig_raw = fs.readFileSync(tsconfig_json, 'utf8');
+tsconfig_raw = tsconfig_raw.replace(/\/\*[\s\S]*?\*\/|([^\\:]|^)\/\/.*$/igm, '');
+const tsconfig = JSON.parse(tsconfig_raw);
+
 if (!tsconfig.compilerOptions || ! tsconfig.compilerOptions.lib) {
   tsconfig["compilerOptions"]["lib"] = ["dom", "es2015.promise", "es5"];
 }
